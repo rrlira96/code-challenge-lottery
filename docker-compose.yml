@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: lotto_winning_numbers
+    ports:
+      - "5432:5432"
