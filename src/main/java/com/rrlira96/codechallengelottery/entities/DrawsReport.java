@@ -1,13 +1,20 @@
 package com.rrlira96.codechallengelottery.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrawsReport {
 
-    private List<DateWon> datesWonList;
-    private Double totalWon;
-    private Double totalSpent;
-    private Double netWinLoss;
+    @JsonProperty("dates_won")
+    private List<DateWon> datesWonList = new ArrayList<>();
+    @JsonProperty("total_won")
+    private Double totalWon = 0.0;
+    @JsonProperty("total_spent")
+    private Double totalSpent = 0.0;
+    @JsonProperty("net_won_loss")
+    private Double netWinLoss = 0.0;
 
     public DrawsReport() {
     }
