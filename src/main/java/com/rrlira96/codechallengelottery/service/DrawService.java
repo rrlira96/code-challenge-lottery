@@ -46,26 +46,25 @@ public class DrawService {
         boolean hasBonus = userGuess.contains(draw.getBonusNumber());
         Double prize;
 
-        if (matchedNumbers.size() == 2) {
-            if (hasBonus) {
-                prize = 5.00;
-            } else {
-                prize = 3.00;
-            }
-        } else if (matchedNumbers.size() == 3) {
-            prize = 10.00;
-        } else if (matchedNumbers.size() == 4) {
-            prize = 85.00;
-        } else if (matchedNumbers.size() == 5) {
-            if (hasBonus) {
-                prize = 250000.00;
-            } else {
-                prize = 3000.00;
-            }
-        } else if (matchedNumbers.size() == 6) {
-            prize = 5000000.00;
-        } else {
-            prize = 0.00;
+        switch (matchedNumbers.size()) {
+            case 2:
+                prize = hasBonus ? 5.00 : 3.00;
+                break;
+            case 3:
+                prize = 10.00;
+                break;
+            case 4:
+                prize = 85.00;
+                break;
+            case 5:
+                prize = hasBonus ? 250000.00 : 3000.00;
+                break;
+            case 6:
+                prize = 5000000.00;
+                break;
+            default:
+                prize = 0.00;
+                break;
         }
 
         if (prize > 0) {
@@ -78,7 +77,6 @@ public class DrawService {
 
         Double spent = calculateSpent(draw.getDrawNumber());
         drawsReport.setTotalSpent(drawsReport.getTotalSpent() + spent);
-
     }
 
     private Double calculateSpent(Integer drawNumber) {
