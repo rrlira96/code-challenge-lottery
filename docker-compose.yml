@@ -8,3 +8,17 @@ services:
       POSTGRES_DB: lotto_winning_numbers
     ports:
       - "5432:5432"
+
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      JDBC_URL: jdbc:postgresql://database:5432/lotto_winning_numbers
+      JDBC_USER: admin
+      DB_PASSWORD: admin
+
+    depends_on:
+      - database
+
